@@ -1,6 +1,4 @@
 'use client'
-
-
 import { TCategory } from "@/app/page";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form"
@@ -12,16 +10,16 @@ type Inputs = {
 
 type ModalCategorysProps = {
     setCategory: React.Dispatch<React.SetStateAction<TCategory[]>>;
-  };
+};
 
 
 
-export default function ModalCategory( {setCategory}:ModalCategorysProps ) {
+export default function CreateCategory({ setCategory }: ModalCategorysProps) {
     const [showModal, setShowModal] = useState(false);
-    const { register, handleSubmit , reset } = useForm<Inputs>()
+    const { register, handleSubmit, reset } = useForm<Inputs>()
 
 
-    const onSubmit: SubmitHandler<Inputs> =async (data) => {
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
         console.log(data)
         const res = await fetch('https://animal-backend-liart.vercel.app/api/v1/category/create', {
             method: "POST",
@@ -35,7 +33,7 @@ export default function ModalCategory( {setCategory}:ModalCategorysProps ) {
 
         console.log('category response', category)
 
-        if(category.success){
+        if (category.success) {
             toast.success('category is succesfull')
             setCategory((prevsData) => [...prevsData, category.data])
             setShowModal(false)
@@ -45,14 +43,9 @@ export default function ModalCategory( {setCategory}:ModalCategorysProps ) {
     }
 
 
-
-
-
-
-
     return (
         <div className="flex justify-center ">
-         
+
             <button
                 className="bg-black border  text-md text-white px-4 py-2 rounded-3xl  transition"
                 onClick={() => setShowModal(true)}
@@ -60,14 +53,11 @@ export default function ModalCategory( {setCategory}:ModalCategorysProps ) {
                 Add Category
             </button>
 
-
-
-
             {/* Modal */}
             {showModal ? (
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
                     <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-                       
+
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-medium">Add Category</h2>
                             <button
@@ -78,13 +68,7 @@ export default function ModalCategory( {setCategory}:ModalCategorysProps ) {
                             </button>
                         </div>
 
-
-
-
-
-                       
                         <div>
-
                             <form onSubmit={handleSubmit(onSubmit)}>
 
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -97,7 +81,7 @@ export default function ModalCategory( {setCategory}:ModalCategorysProps ) {
                                     {...register('name')}
                                 />
 
-                                
+
 
                                 <button className="bg-black text-white px-4 py-2 rounded w-full transition">
                                     Save

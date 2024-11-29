@@ -1,6 +1,7 @@
 'use client'
-import ModalAnimal from "@/components/createAnimal/page";
-import ModalCategory from "@/components/createCategory/page";
+import CreateAnimal from "@/components/createAnimal/page";
+import CreateCategory from "@/components/createCategory/page";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -73,6 +74,10 @@ const Home = () => {
     fetchAnimalData();
   }, []);
 
+
+
+
+
   const handleCategory = (category:string) => {
 
     // console.log(category)
@@ -117,8 +122,8 @@ const Home = () => {
 
         
         <div className="flex gap-3 ">
-          <ModalAnimal setAnimal={setAnimal}  ></ModalAnimal>
-          <ModalCategory setCategory={setCategory} ></ModalCategory>
+          <CreateAnimal setAnimal={setAnimal}  ></CreateAnimal>
+          <CreateCategory setCategory={setCategory} ></CreateCategory>
         </div>
 
 
